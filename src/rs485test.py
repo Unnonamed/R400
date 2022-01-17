@@ -88,3 +88,15 @@ def main():
 
         
 main()
+
+
+# class ArduinoKeyboard(serial.Serial):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         time.sleep(1)
+
+#     def key(self, code:str, status: int):
+#         data = KeyInputData()
+#         data.opcode = status
+#         data.data = ord(code)
+#         self.write(bytes(data))
