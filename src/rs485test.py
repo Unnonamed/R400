@@ -8,13 +8,21 @@ import os
 import sys
 import time
 import threading
-# from ctypes import c_byte, c_ubyte, Structure, c_uint16
 
 # class SerialData(Structure):
 #     _pack_ = 1
-#     _fields_ = [("seq", c_ubyte)
-#                 , ("opcode", c_uint16)]
-    
+#     _fields_ = [("seq", c_ubyte), ("option", c_uint16)]
+# class ArduinoKeyboard(serial.Serial):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         time.sleep(1)
+
+#     def key(self, code:str, status: int):
+#         data = SerialData()
+#         data.opcode = status
+#         data.data = ord(code)
+#         self.write(bytes(data))
+
 # seiral port
 _serial0 = "/dev/ttyAMA0"
 _serial1 = "/dev/ttyS0"
@@ -73,7 +81,7 @@ def main():
         GPIO.output(gpioPin, GPIO.HIGH)
         print('GPIO.HIGH')
 
-        strcmd = "ff ff 00 00"
+        strcmd = seq + "ff ff 00 00"
         
         print('[ seq : {0} ] [ send data : {1} ]').format(seq, strcmd)
 
@@ -90,13 +98,4 @@ def main():
 main()
 
 
-# class ArduinoKeyboard(serial.Serial):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         time.sleep(1)
 
-#     def key(self, code:str, status: int):
-#         data = KeyInputData()
-#         data.opcode = status
-#         data.data = ord(code)
-#         self.write(bytes(data))
